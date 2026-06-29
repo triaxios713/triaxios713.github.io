@@ -27,7 +27,7 @@ a:hover {
 }
 
 .navbar {
-  max-width: 1000px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -50,7 +50,7 @@ a:hover {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 20px 60px 20px;
   display: grid;
@@ -112,9 +112,26 @@ a:hover {
 .icon {
   width: 16px;
   height: 16px;
-  fill: #555555;
   flex-shrink: 0;
 }
+
+.icon-location {
+  fill: #000000;
+}
+
+.icon-linkedin {
+  fill: #0077b5;
+}
+
+.icon-github {
+  fill: #181717;
+}
+
+.icon-scholar {
+  fill: #4c4c4c;
+}
+
+
 
 /* Vùng nội dung chính (Markdown chuyển đổi sang) */
 .content h1 {

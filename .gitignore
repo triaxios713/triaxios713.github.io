@@ -1,0 +1,11 @@
+# Compiled Jekyll site output (built locally)
+_site/
+
+# Jekyll temporary build cache
+.jekyll-cache/
+.jekyll-metadata
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
