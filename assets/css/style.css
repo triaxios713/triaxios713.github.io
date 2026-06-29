@@ -1,0 +1,171 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  line-height: 1.6;
+}
+
+a {
+  color: #0c56b3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.navbar-header {
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+  margin-bottom: 40px;
+}
+
+.navbar {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  color: #777777;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.nav-link.active, .nav-link:hover {
+  color: #111111;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px 60px 20px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+}
+
+.sidebar {
+  font-size: 14px;
+}
+
+.profile-card {
+  position: sticky;
+  top: 20px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 1px solid #dddddd;
+}
+
+.profile-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.profile-title {
+  color: #666666;
+  margin-bottom: 25px;
+}
+
+.social-links {
+  list-style: none;
+}
+
+.social-links li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #555555;
+}
+
+.social-links a {
+  color: #555555;
+}
+
+.social-links a:hover {
+  color: #0c56b3;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: #555555;
+  flex-shrink: 0;
+}
+
+/* Vùng nội dung chính (Markdown chuyển đổi sang) */
+.content h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 20px;
+}
+
+.content h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111111;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 8px;
+}
+
+.content p {
+  margin-bottom: 20px;
+  color: #444444;
+}
+
+.content ul, .content ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.content li {
+  margin-bottom: 10px;
+  color: #444444;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .profile-card {
+    text-align: center;
+    position: static;
+  }
+  
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .social-links li {
+    justify-content: center;
+  }
+}

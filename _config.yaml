@@ -1,3 +1,9 @@
-theme: jekyll-theme-minimal
-title: triaxios713's homepage
-description: Bookmark this to keep an eye on my project updates!
+# General
+title: "Tri M.Ngo"
+description: "triaxios713's page"
+email: "ngominhtri9107@gmail.com"
+
+theme: ""
+exclude:
+  - README.md
+  - LICENSE
