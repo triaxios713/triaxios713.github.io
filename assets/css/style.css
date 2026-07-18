@@ -29,13 +29,14 @@ a:hover {
 .navbar-header {
   border-bottom: 1px solid #f1f5f9;
   padding: 24px 0;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .navbar {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 0 24px;
+  max-width: 1140px;
+  margin-left: 5%; /* Shift closer to left edge of screen */
+  margin-right: auto;
+  padding: 0 40px;
 }
 
 .nav-links {
@@ -65,32 +66,38 @@ a:hover {
   border-color: #111111; /* Clean underline for active page */
 }
 
-/* Layout Grid */
+/* Layout Grid - Split Panel Layout */
 .container {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 0 24px 80px 24px;
+  max-width: 1140px;
+  margin-left: 5%; /* Shift closer to left edge of screen */
+  margin-right: auto;
+  padding: 0 40px 80px 0;
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 80px;
+  grid-template-columns: 280px 1fr; /* Sidebar width balanced */
+  gap: 0;
 }
 
-/* Sidebar */
+/* Sidebar with split background */
 .sidebar {
   font-size: 14px;
+  background-color: #f8fafc; /* slate-50: soft gray background */
+  border-right: 1px solid #e2e8f0; /* vertical divider line */
+  padding: 40px 35px; /* Symmetric padding (35px left and right) to center the content block */
 }
 
 .profile-card {
   position: sticky;
   top: 40px;
+  text-align: left; /* Left align text */
 }
 
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 24px;
+  display: block;
   border: 1px solid #e2e8f0;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -117,11 +124,13 @@ a:hover {
 
 .social-links {
   list-style: none;
+  width: 100%;
 }
 
 .social-links li {
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* Left-align the list items */
   gap: 12px;
   margin-bottom: 14px;
   color: #555555;
@@ -129,7 +138,7 @@ a:hover {
 }
 
 .social-links li:hover {
-  transform: translateX(3px);
+  transform: translateX(3px); /* Shift right on hover for clean left-aligned list */
 }
 
 .social-links a {
@@ -165,6 +174,10 @@ a:hover {
 }
 
 /* Main Content Area */
+.content {
+  padding: 40px 0 40px 60px; /* Offset spacing from sidebar border */
+}
+
 .content h1 {
   font-size: 32px;
   font-weight: 700;
@@ -235,12 +248,25 @@ a:hover {
     padding: 20px 0;
   }
 
+  .navbar {
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
   .container {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding-bottom: 40px;
+    gap: 0;
+    padding: 0 20px 40px 20px;
+    margin: 0 auto;
   }
   
+  .sidebar {
+    background-color: transparent;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 0 30px 0;
+  }
+
   .profile-card {
     text-align: center;
     position: static;
@@ -250,6 +276,7 @@ a:hover {
     width: 130px;
     height: 130px;
     margin-bottom: 16px;
+    margin: 0 auto 16px auto;
   }
 
   .social-links li {
@@ -258,5 +285,9 @@ a:hover {
   
   .social-links li:hover {
     transform: none;
+  }
+
+  .content {
+    padding: 30px 0 0 0;
   }
 }
