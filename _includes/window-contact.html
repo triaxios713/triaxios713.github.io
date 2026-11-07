@@ -1,0 +1,11 @@
+<div class="contact">
+  <h2>Contact Me</h2>
+  <ul class="contact-list sunken">
+    {% for link in site.data.contact %}
+    <li>
+      <img src="{{ '/assets/images/icons/32/' | append: link.icon | append: '.png' | relative_url }}" alt="" width="24" height="24">
+      <a href="{{ link.url }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener"{% endunless %}>{{ link.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,18 @@
+# Links shown in the "Contact Me" window.
+# icon: file name (without .png) in assets/images/icons/32
+
+- name: GitHub
+  url: https://github.com/triaxios713
+  icon: applications-internet
+
+- name: LinkedIn
+  url: https://www.linkedin.com/in/tri-ngo-6b2223366/
+  icon: applications-internet
+
+- name: Google Scholar
+  url: https://scholar.google.com/citations?user=irorWDoAAAAJ&hl=en&authuser=1
+  icon: applications-internet
+
+- name: ngominhtri9107@gmail.com
+  url: mailto:ngominhtri9107@gmail.com
+  icon: internet-mail

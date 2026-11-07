@@ -1,0 +1,33 @@
+# Desktop icons and their windows, in display order.
+# type: page    -> renders the Markdown file given in `page`
+#       cv      -> PDF viewer for assets/pdf/CV.pdf
+#       contact -> links from _data/contact.yml
+# icon: file name (without .png) in assets/images/icons/16, /32 and /48
+
+- id: about
+  title: About Me
+  icon: user-identity
+  type: page
+  page: index.md
+
+- id: projects
+  title: Projects
+  icon: folder-development
+  type: page
+  page: projects.md
+
+- id: publications
+  title: Publications
+  icon: accessories-dictionary
+  type: page
+  page: publications.md
+
+- id: cv
+  title: CV.pdf
+  icon: application-pdf
+  type: cv
+
+- id: contact
+  title: Contact Me
+  icon: internet-mail
+  type: contact

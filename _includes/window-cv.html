@@ -1,0 +1,13 @@
+{% assign cv_url = '/assets/pdf/CV.pdf' | relative_url %}
+<div class="window-toolbar">
+  <a class="win-button" href="{{ cv_url }}" target="_blank" rel="noopener">Open in new tab</a>
+  <a class="win-button" href="{{ cv_url }}" download>Download</a>
+</div>
+<div class="pdf-frame sunken">
+  <!-- src is set by desktop.js when the window first opens, so the PDF is not loaded on every visit -->
+  <iframe data-src="{{ cv_url }}" title="CV of Tri M. Ngo"></iframe>
+  <p class="pdf-fallback">
+    Your browser can't show the PDF here.
+    <a href="{{ cv_url }}" target="_blank" rel="noopener">Open CV.pdf</a> instead.
+  </p>
+</div>

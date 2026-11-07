@@ -1,0 +1,643 @@
+/* Frutiger Aero desktop, layered on top of 7.css */
+
+:root {
+  --taskbar-height: 40px;
+  --font: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --heading: #1e3287;
+  --link: #0066cc;
+  --link-hover: #3399ff;
+  /* 7.css reads its font from this variable */
+  --w7-font: 9pt var(--font);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* ---------- Wallpaper: sky, light rays, green hill ---------- */
+
+body {
+  overflow: hidden;
+  font-family: var(--font);
+  background:
+    radial-gradient(70% 22% at 30% 104%, #d4f79a 0 35%, transparent 70%),
+    radial-gradient(130% 40% at 60% 112%, #8fdc4e 0 45%, #3f9f35 72%, transparent 73%),
+    radial-gradient(50% 30% at 82% 22%, rgba(255, 255, 255, 0.55), transparent 70%),
+    repeating-conic-gradient(from 95deg at 85% -15%, rgba(255, 255, 255, 0.09) 0 3deg, transparent 3deg 9deg),
+    linear-gradient(#0a5bbd, #2f9ae8 40%, #8fd6ff 68%, #dff6ff);
+  background-attachment: fixed;
+}
+
+/* ---------- Bubbles ---------- */
+
+.bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubbles span {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle closest-side at 36% 32%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0) 75%),
+    radial-gradient(circle closest-side, rgba(255, 255, 255, 0.08) 0, rgba(170, 225, 255, 0.14) 70%, rgba(255, 255, 255, 0.6) 93%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Bubbles rise from below the screen and sway side to side */
+@media (prefers-reduced-motion: no-preference) {
+  .bubbles span {
+    top: 100%;
+    animation:
+      bubble-rise var(--d) linear var(--delay) infinite,
+      bubble-sway 2.6s ease-in-out var(--delay) infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes bubble-rise {
+    from { transform: translateY(0); }
+    to   { transform: translateY(calc(-100vh - 100%)); }
+  }
+
+  @keyframes bubble-sway {
+    from { translate: -14px 0; }
+    to   { translate: 14px 0; }
+  }
+}
+
+/* ---------- Desktop icons ---------- */
+
+.desktop {
+  position: relative;
+  height: calc(100% - var(--taskbar-height));
+  overflow: hidden;
+}
+
+.desktop-icons {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.desktop-icon,
+.desktop-icon:hover,
+.desktop-icon:focus {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 88px;
+  padding: 6px 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.4);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.desktop-icon img {
+  margin-bottom: 4px;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+}
+
+.desktop-icon:hover {
+  background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.desktop-icon.is-selected,
+.desktop-icon:focus-visible {
+  background: linear-gradient(rgba(180, 225, 255, 0.5), rgba(120, 190, 255, 0.35));
+  border-color: rgba(200, 235, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Windows ---------- */
+
+.app-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-bar {
+  flex: none;
+  user-select: none;
+}
+
+.title-bar-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.window-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* White document area */
+.sunken {
+  background: #fff;
+  border: 1px solid #8e8f8f;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.doc {
+  margin: 0 6px 6px;
+  padding: 18px 22px;
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.65;
+  color: #1e1e1e;
+}
+
+/* The window title already names the page */
+.doc > h1:first-of-type {
+  display: none;
+}
+
+.doc h1,
+.doc h2,
+.doc h3 {
+  margin: 1.2em 0 0.4em;
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--heading);
+}
+
+.doc h2 { font-size: 1.45em; }
+.doc h3 { font-size: 1.15em; }
+
+.doc strong {
+  font-weight: 600;
+}
+
+.doc p,
+.doc ul {
+  margin: 0 0 0.8em;
+}
+
+.doc ul {
+  padding-left: 1.4em;
+}
+
+.doc li {
+  margin-bottom: 0.3em;
+}
+
+.doc hr {
+  margin: 1em 0;
+  border: none;
+  border-top: 1px solid #d5dfe5;
+}
+
+.doc a,
+.contact a,
+.pdf-fallback a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.doc a:hover,
+.contact a:hover,
+.pdf-fallback a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.about-avatar {
+  float: right;
+  width: 120px;
+  margin: 0 0 12px 16px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Buttons rendered as links, matching 7.css buttons */
+.win-button {
+  display: inline-block;
+  min-width: 75px;
+  padding: 4px 14px;
+  border: 1px solid #707070;
+  border-radius: 3px;
+  background: linear-gradient(#f2f2f2 45%, #ebebeb 45%, #dddddd 50%, #cfcfcf);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  color: #000;
+  font-family: var(--font);
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.win-button:hover {
+  border-color: #3c7fb1;
+  background: linear-gradient(#eaf6fd 45%, #d9f0fc 45%, #bee6fd 50%, #a7d9f5);
+  color: #000;
+  text-decoration: none;
+}
+
+.win-button:active {
+  border-color: #2c628b;
+  background: linear-gradient(#e5f4fc 45%, #c4e5f6 45%, #98d1ef 50%, #68b3db);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* CV window */
+#cv .window-body,
+#contact .window-body {
+  padding: 8px;
+}
+
+.window-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.pdf-frame {
+  position: relative;
+  min-height: 300px;
+  padding: 2px;
+}
+
+.pdf-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-fallback {
+  display: none;
+  padding: 16px;
+  font-size: 13px;
+}
+
+/* Contact window */
+.contact h2 {
+  margin: 4px 4px 12px;
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.contact-list {
+  margin: 0;
+  padding: 10px 12px;
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* ---------- Taskbar: dark glass ---------- */
+
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--taskbar-height);
+  padding: 0 6px 0 4px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08) 50%, rgba(0, 0, 0, 0.12) 50%, rgba(0, 0, 0, 0.3)),
+    rgba(16, 42, 72, 0.55);
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  backdrop-filter: blur(12px) saturate(1.4);
+}
+
+.taskbar button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.taskbar button::before,
+.taskbar button::after {
+  content: none;
+}
+
+/* Round, glowing start orb */
+.start-button {
+  flex: none;
+  justify-content: center;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(0, 30, 60, 0.8);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 45%),
+    radial-gradient(circle at 50% 110%, #7ef0ff, #1d8fd8 45%, #0b3f7a 75%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 8px rgba(80, 190, 255, 0.6);
+}
+
+.start-button:hover,
+.start-button[aria-expanded="true"] {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 14px 3px rgba(110, 215, 255, 0.95);
+}
+
+.start-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.start-button img {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.6));
+}
+
+/* Open-window buttons */
+.taskbar-windows {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.taskbar-windows button {
+  flex: 0 1 160px;
+  justify-content: flex-start;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 3px;
+  background: linear-gradient(rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.08));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 12px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.taskbar-windows button:hover {
+  background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15) 50%, rgba(160, 220, 255, 0.15) 50%, rgba(160, 220, 255, 0.35));
+}
+
+.taskbar-windows button.is-active {
+  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.2) 50%, rgba(120, 200, 255, 0.3) 50%, rgba(120, 200, 255, 0.55));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55), 0 0 6px rgba(120, 200, 255, 0.7);
+}
+
+.taskbar-windows button span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.taskbar-tray {
+  flex: none;
+  padding: 0 10px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 32px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- Start menu: glass frame, white list ---------- */
+
+.start-menu {
+  position: absolute;
+  left: 4px;
+  bottom: calc(var(--taskbar-height) + 4px);
+  display: flex;
+  min-width: 260px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.start-menu[hidden] {
+  display: none;
+}
+
+.start-menu-items {
+  flex: 1;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.taskbar .start-menu-items button {
+  gap: 10px;
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: none;
+  box-shadow: none;
+  color: #1e1e1e;
+  font-family: var(--font);
+  font-size: 13px;
+  text-align: left;
+}
+
+.taskbar .start-menu-items button:hover,
+.taskbar .start-menu-items button:focus-visible {
+  background: linear-gradient(#f2f8fd, #d6eafa);
+  border-color: #7da2ce;
+  outline: none;
+}
+
+.start-menu-separator {
+  height: 1px;
+  margin: 4px 6px;
+  background: #d5dfe5;
+}
+
+/* ---------- With JS: floating windows ---------- */
+
+.js .app-window {
+  position: absolute;
+  display: none;
+  width: min(680px, calc(100vw - 120px));
+  height: min(560px, calc(100% - 32px));
+  min-width: 280px;
+  min-height: 180px;
+  resize: both;
+  overflow: hidden;
+}
+
+.js .app-window.is-open {
+  display: flex;
+}
+
+.js .app-window.is-minimized {
+  display: none;
+}
+
+.js .app-window.is-maximized {
+  inset: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  resize: none;
+}
+
+.js .title-bar {
+  cursor: default;
+  touch-action: none;
+}
+
+.js #cv .window-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.js #cv .pdf-frame {
+  flex: 1;
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .app-window.is-open {
+    animation: window-open 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  @keyframes window-open {
+    from { transform: scale(0.92) translateY(8px); opacity: 0; }
+    to   { transform: none; opacity: 1; }
+  }
+}
+
+/* ---------- Without JS: plain scrolling page ---------- */
+
+.no-js body {
+  overflow: auto;
+}
+
+.no-js .desktop {
+  height: auto;
+  overflow: visible;
+  padding: 12px 12px 24px 110px;
+}
+
+.no-js .desktop-icons {
+  position: fixed;
+}
+
+.no-js .app-window {
+  max-width: 760px;
+  margin: 0 auto 20px;
+}
+
+.no-js .title-bar-controls,
+.no-js .taskbar,
+.no-js .pdf-frame iframe {
+  display: none;
+}
+
+.no-js .pdf-fallback {
+  display: block;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  .desktop-icons {
+    position: relative;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 8px;
+  }
+
+  .js .app-window {
+    inset: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    resize: none;
+  }
+
+  .js .title-bar-controls button[data-action="maximize"] {
+    display: none;
+  }
+
+  /* Full-screen windows cover the wallpaper, so skip the costly glass blur */
+  .window.glass::after {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .no-js .desktop {
+    padding: 0 8px 24px;
+  }
+
+  .no-js .desktop-icons {
+    position: static;
+  }
+
+  .about-avatar {
+    width: 88px;
+  }
+
+  .doc {
+    padding: 12px 14px;
+  }
+
+  /* Mobile browsers rarely render PDFs in an iframe */
+  .pdf-frame iframe {
+    display: none;
+  }
+
+  .pdf-fallback {
+    display: block;
+  }
+
+  .pdf-frame {
+    height: auto;
+    min-height: 0;
+  }
+}

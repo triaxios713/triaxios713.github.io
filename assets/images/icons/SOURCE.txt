@@ -1,0 +1,7 @@
+Icons in this folder come from the Oxygen icon theme by KDE
+(https://invent.kde.org/frameworks/oxygen-icons, mirror: https://github.com/KDE/oxygen-icons),
+used unmodified under the GNU Lesser General Public License v3.0 or later (see LICENSE;
+the LGPL supplements the GNU GPL v3, https://www.gnu.org/licenses/gpl-3.0.txt).
+
+Copyright (C) 2007 Nuno Pinheiro, David Vignoni, David Miller,
+Johann Ollivier Lapeyre, Kenneth Wimer, Riccardo Iaconelli and others.
